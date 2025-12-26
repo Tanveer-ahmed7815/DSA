@@ -1,4 +1,4 @@
-package BinarySearch;
+package Searching;
 /* Created by ayesh on 02-11-2025 */
 
 public class SearchInsertionPosition {
