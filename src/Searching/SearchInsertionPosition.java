@@ -18,10 +18,10 @@ public class SearchInsertionPosition {
             }
 
             if(target < arr[mid]){
-                end = end - 1;
+                end = mid - 1;
             }
             if (target > arr[mid]) {
-                start = start + 1;
+                start = mid + 1;
             }
         }
 
