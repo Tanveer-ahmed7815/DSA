@@ -1,31 +1,33 @@
 package Searching;
 /*
-First Occurrence of an Element
+Last Occurrence of an Element
 
 Problem:
-Find the first occurrence of a target in a sorted array with duplicates.
+Find the last occurrence of a target in a sorted array.
 
 Example:
 Input: arr = [2,4,4,4,6], target = 4
-Output: 1
-*/
+Output: 3
+ */
 
-public class FirstOccurance {
+import java.util.Arrays;
+
+public class LastOccurrence {
+
     public static void main(String[] args) {
-        int[] arr = {2, 3, 3, 4, 6};
-        int target = 3;
+        int[] arr = {2, 4, 4, 4, 4, 6, 6};
+        int target = 6;
 
         int start = 0;
         int end = arr.length - 1;
-        int mid = 0;
         int result = -1;
 
         while (start <= end) {
+            int mid = start + (end - start) / 2;
 
-            mid = start + (end - start) / 2;
             if (arr[mid] == target) {
                 result = mid;
-                end = mid - 1;
+                start = mid + 1;
             } else if (arr[mid] > target) {
                 end = mid - 1;
             } else {
@@ -34,6 +36,5 @@ public class FirstOccurance {
         }
 
         System.out.println(result);
-
     }
 }
