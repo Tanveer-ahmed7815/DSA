@@ -11,5 +11,11 @@ Output: [["eat","tea","ate"], ["tan","nat"], ["bat"]]
 public class GroupAnagrams {
     public static void main(String[] args) {
         String[] input = {"eat", "tea", "tan", "ate", "nat", "bat"};
+
+        checkAnagram("","");
+    }
+
+    private static void checkAnagram(String s, String s1) {
+
     }
 }
