@@ -4,29 +4,29 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Stack;
 
-//Count and Say Sequence
+//Check Rotation of Another String
 //
-//Problem: Return the nth term of the "count and say" sequence.
-//        Example:
-//Input: n = 4
-//Output: "1211"
+//Problem: Return true if s2 is a rotation of s1.
+//Example:
+//Input: "waterbottle", "erbottlewat"
+//Output: true
 public class PracticeStringAgain {
     public static void main(String[] args) {
 
-        String[] input = {"a", "a", "b", "b", "b", "c"};
-        Map<String, Integer> map = new HashMap<>();
-
-        for (String str : input) {
-            map.put(str, map.getOrDefault(str, 0) + 1);
+        String input = "waterbottle";
+        // aterbottlew
+        // terbottlew a
+        String input2 = "erbottlewat";
+        String res = input;
+        for (int i = 0; i < input.length(); i++) {
+            res = res.substring(1) + input.charAt(i);
+            if (res.equals(input2)) {
+                System.out.println("Equal");
+                break;
+            }
         }
-        List<String> list = new ArrayList<>();
-        for (Map.Entry<String, Integer> entry : map.entrySet()) {
-            list.add(entry.getKey());
-            list.add(entry.getValue().toString());
-        }
-
-        System.out.println(list);
 
     }
 
