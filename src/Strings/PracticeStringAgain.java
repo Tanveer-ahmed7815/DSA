@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Stack;
+import java.util.stream.Stream;
 
 //Check Rotation of Another String
 //
@@ -15,18 +17,12 @@ import java.util.Stack;
 public class PracticeStringAgain {
     public static void main(String[] args) {
 
-        String input = "waterbottle";
-        // aterbottlew
-        // terbottlew a
-        String input2 = "erbottlewat";
-        String res = input;
-        for (int i = 0; i < input.length(); i++) {
-            res = res.substring(1) + input.charAt(i);
-            if (res.equals(input2)) {
-                System.out.println("Equal");
-                break;
-            }
-        }
+        Stream<String> stream =
+                Stream.of("a", "b", "c").filter(element -> element.contains("b"));
+        Optional<String> anyElement = stream.findAny();
+
+        System.out.println(anyElement.get());
+        Optional<String> first = stream.findFirst();
 
     }
 
