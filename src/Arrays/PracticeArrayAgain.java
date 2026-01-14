@@ -11,26 +11,33 @@ import java.util.stream.IntStream;
 public class PracticeArrayAgain {
     public static void main(String[] args) {
 
-//        Running Sum of Array
+//        Max Consecutive Ones
 //
-//        [1,2,3] → [1,3,6]
+//                [1,1,0,1,1,1] → 3
 
 
-        int[] nums = {1, 7, 3, 6, 5, 6};
+        int[] nums = {1, 1, 0, 1, 1, 1};
 
-        int totalSum = Arrays.stream(nums).sum();
-        int leftSum = 0;
+        int left = 0;
+        int right = 0;
 
-        for (int i = 0; i < nums.length; i++) {
-            int rightSum = totalSum - leftSum - nums[i];
-            if (leftSum == rightSum) {
-                System.out.println(i);
-                break;
+        int maxConsecutiveSize = 0;
+
+        int counter = 0;
+        while (right < nums.length) {
+
+            if (nums[right] == 1) {
+                counter++;
+                maxConsecutiveSize = Math.max(maxConsecutiveSize, right - left + 1);
             } else {
-                leftSum = leftSum + nums[i];
+                left = counter + 1;
+                counter = 0;
             }
+            right++;
+
         }
 
+        System.out.println(maxConsecutiveSize);
 
     }
 

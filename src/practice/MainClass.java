@@ -126,10 +126,6 @@ public class MainClass {
 //                .forEach(System.out::println);
 
 
-        List<Employee> female = list.stream().filter(e -> e.getGender().equalsIgnoreCase("Female")).sorted(Comparator.comparingDouble(Employee::getSalary).reversed())
-                .limit(2)
-                .toList();
-        System.out.println(female);
 
 
     }
