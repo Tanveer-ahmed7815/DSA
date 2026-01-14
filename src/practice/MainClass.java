@@ -1,7 +1,9 @@
 package practice;
 /* Created by ayesh on 09-01-2026 */
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -107,7 +109,28 @@ public class MainClass {
         //System.out.println(avgSalaryLessThan30);
 
         List<String> maleSaleGreaterThan45k = list.stream().filter(e -> e.getGender().equalsIgnoreCase("Male") && e.getSalary() >= 45000).map(Employee::getName).toList();
-        System.out.println(maleSaleGreaterThan45k);
+       // System.out.println(maleSaleGreaterThan45k);
+
+
+        Integer commonAge = list.stream().collect(Collectors.groupingBy(Employee::getAge, Collectors.counting()))
+                .entrySet()
+                .stream()
+                .max(Map.Entry.comparingByValue())
+                .get()
+                .getKey();
+      //  System.out.println(commonAge);
+
+
+//        list.stream().sorted(Comparator.comparingInt(Employee::getAge)
+//                .thenComparing(Comparator.comparingDouble(Employee::getSalary).reversed()))
+//                .forEach(System.out::println);
+
+
+        List<Employee> female = list.stream().filter(e -> e.getGender().equalsIgnoreCase("Female")).sorted(Comparator.comparingDouble(Employee::getSalary).reversed())
+                .limit(2)
+                .toList();
+        System.out.println(female);
+
 
     }
 }
