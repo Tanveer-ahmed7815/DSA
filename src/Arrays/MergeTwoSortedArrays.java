@@ -19,10 +19,26 @@ public class MergeTwoSortedArrays {
         int[] nums2 = {2, 4, 6};
 
         int[] res = new int[nums1.length + nums2.length];
-        System.arraycopy(nums1, 0, res, 0, nums1.length);
-        System.arraycopy(nums2, 0, res, nums1.length, nums2.length);
 
-        Arrays.sort(res);
+        int i, j, k;
+        i = k = j = 0;
+
+        while (i < nums1.length && j < nums2.length) {
+            if (nums1[i] < nums2[j]) {
+                res[k++] = nums1[i++];
+            } else {
+                res[k++] = nums2[j++];
+            }
+        }
+
+        while (i < nums1.length) {
+            res[k++] = nums1[i++];
+        }
+
+        while (j < nums2.length) {
+            res[k++] = nums2[j++];
+        }
+
         System.out.println(Arrays.toString(res));
     }
 }
