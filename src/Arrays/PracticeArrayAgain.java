@@ -11,33 +11,28 @@ import java.util.stream.IntStream;
 public class PracticeArrayAgain {
     public static void main(String[] args) {
 
-//        Max Consecutive Ones
+//        Best Time to Buy and Sell Stock
 //
-//                [1,1,0,1,1,1] → 3
+//                [7,1,5,3,6,4] → 5
 
+        int[] arr = {7, 1, 5, 3, 6, 4};
+        int totalProfit = 0;
 
-        int[] nums = {1, 1, 0, 1, 1, 1};
+        int buyPrice = arr[0];
 
-        int left = 0;
-        int right = 0;
-
-        int maxConsecutiveSize = 0;
-
-        int counter = 0;
-        while (right < nums.length) {
-
-            if (nums[right] == 1) {
-                counter++;
-                maxConsecutiveSize = Math.max(maxConsecutiveSize, right - left + 1);
-            } else {
-                left = counter + 1;
-                counter = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if(arr[i] < buyPrice){
+                buyPrice = arr[i];
+            }else{
+                int profit = arr[i] - buyPrice;
+                totalProfit = totalProfit + profit;
+                buyPrice = arr[i];
             }
-            right++;
+
 
         }
 
-        System.out.println(maxConsecutiveSize);
+        System.out.println(totalProfit);
 
     }
 
