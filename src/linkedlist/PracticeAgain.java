@@ -105,16 +105,54 @@ public class PracticeAgain {
     }
 
     private static ListNode removeNthNodeLL(ListNode head, int index) {
-
         ListNode curr = head;
+        if (index == 0) {
+            head = curr.next;
+            return head;
+        }
+
+
         for (int i = 1; i < index; i++) {
             curr = curr.next;
         }
 
-        if(curr.next != null && curr.next.next != null){
+        if (curr.next.next == null) {
+            curr.next = null;
+            return head;
+        }
+
+        if (curr.next != null) {
             curr.next = curr.next.next;
         }
+
         return head;
+    }
+
+    private static int findLengthLL(ListNode head) {
+
+        int count = 0;
+
+        while (head != null) {
+            count++;
+            head = head.next;
+        }
+        return count;
+    }
+
+
+    private static ListNode searchElementLL(ListNode head, int i) {
+
+        ListNode curr = head;
+
+        while (curr != null) {
+            if (curr.val == i) {
+                return curr;
+            }
+            curr = curr.next;
+        }
+
+        return head;
+
     }
 
 
@@ -123,7 +161,7 @@ public class PracticeAgain {
         ListNode head = new ListNode(1);
         head.next = new ListNode(2);
         head.next.next = new ListNode(3);
-        head.next.next.next = new ListNode(3);
+        head.next.next.next = new ListNode(4);
         head.next.next.next.next = new ListNode(5);
 
         displayLL(head);
@@ -152,11 +190,16 @@ public class PracticeAgain {
 //        displayLL(listNode);
 //        System.out.println();
 
-        ListNode head2 = removeNthNodeLL(head, 1);
-        displayLL(head2);
-        System.out.println();
+//        ListNode head2 = removeNthNodeLL(head, 4);
+//        displayLL(head2);
+//        System.out.println();
+
+//        int lengthLL = findLengthLL(head);
+//        System.out.println(lengthLL);
+
+        ListNode listNode = searchElementLL(head, 2);
+        System.out.println(listNode.val);
 
     }
-
 
 }
