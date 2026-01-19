@@ -25,107 +25,11 @@ public class MainClass {
         list.add(new Employee("Siddarth", 22, 5000.0, "Male"));
         list.add(new Employee("Shanu", 32, 88000.0, "Male"));
 
-        List<String> femaleListNames = list.stream().filter(e -> e.getGender().equalsIgnoreCase("Female")).map(Employee::getName).toList();
-        // System.out.println(femaleListNames);
-
-        List<String> ageAbove30List = list.stream().filter(e -> e.getAge() > 30).map(Employee::getName).toList();
-        // System.out.println(ageAbove30List);
-
-        List<Employee> salaryAbove30KList = list.stream().filter(e -> e.getSalary() > 30000).toList();
-        //  System.out.println(salaryAbove30KList);
-
-        double avgSalary = list.stream().mapToDouble(Employee::getSalary).average().orElse(0);
-        // System.out.println(avgSalary);
-
-        double maxSalary = list.stream().mapToDouble(Employee::getSalary).max().orElse(0);
-        //  System.out.println(maxSalary);
-
-        Map<String, List<Employee>> groupByGenderList = list.stream().collect(Collectors.groupingBy(Employee::getGender));
-        //System.out.println(groupByGenderList);
-
-        long maleCount = list.stream().filter(e -> e.getGender().equalsIgnoreCase("Male")).count();
-        // System.out.println(maleCount);
-
-        double sum = list.stream().mapToDouble(Employee::getSalary).sum();
-        // System.out.println(sum);
-
-        List<String> sortByNameList = list.stream().sorted(Comparator.comparing(Employee::getName)).map(Employee::getName).toList();
-        //System.out.println(sortByNameList);
-
-        List<Employee> sortByAgeList = list.stream().sorted(Comparator.comparing(Employee::getAge)).toList();
-        //System.out.println(sortByAgeList);
-
-        List<Double> salaryInDescList = list.stream().sorted(Comparator.comparing(Employee::getSalary).reversed()).map(Employee::getSalary).toList();
-        //System.out.println(salaryInDescList);
-
-        Employee employee = list.stream().sorted(Comparator.comparing(Employee::getAge).reversed()).findFirst().orElseThrow(null);
-        //System.out.println(employee);
-
-        Employee employee1 = list.stream().max(Comparator.comparing(Employee::getAge)).orElseThrow(null);
-        //System.out.println(employee1);
-
-        Map<String, List<Employee>> ageRangeList = list.stream().collect(Collectors.groupingBy(e -> {
-            int age = e.getAge();
-            if (age >= 20 && age <= 30) return "20-30";
-            else if (age >= 30 && age <= 40) return "31-40";
-            else return "40+";
-        }));
-        //System.out.println(ageRangeList);
-
-        List<Employee> age35 = list.stream().filter(e -> e.getAge() == 35).toList();
-        // System.out.println(age35);
-
-        Map<String, Double> gendersBasedSalarySum = list.stream().collect(Collectors.groupingBy(Employee::getGender, Collectors.summingDouble(Employee::getSalary)));
-        //System.out.println(gendersBasedSalarySum);
-
-        List<String> nameListStartingWithA = list.stream().filter(e -> e.getName().startsWith("A")).map(Employee::getName).toList();
-        //System.out.println(nameListStartingWithA);
-
-        Map<String, Double> averageSalaryByGender = list.stream().collect(Collectors.groupingBy(Employee::getGender, Collectors.averagingDouble(Employee::getSalary)));
-        //System.out.println(averageSalaryByGender);
-
-        List<String> top5HighestSalary = list.stream().limit(5).sorted(Comparator.comparingDouble(Employee::getSalary).reversed()).map(Employee::getName).toList();
-        //System.out.println(top5HighestSalary);
-
-        List<Integer> distinctAges = list.stream().map(Employee::getAge).distinct().toList();
-        //System.out.println(distinctAges);
-
-       // list.stream().sorted(Comparator.comparingDouble(Employee::getSalary)).limit(3).forEach(System.out::println);
-
-        List<String> sortNamesBasedOnLength = list.stream().sorted(Comparator.comparingInt(e -> e.getName().length())).map(Employee::getName).toList();
-       // System.out.println(sortNamesBasedOnLength);
-
-//       list.stream().collect(Collectors.groupingBy(e -> {
-//            if (e.getAge() >= 20 && e.getAge() <= 29) {
-//                return "20-29 age group";
-//            } else if (e.getAge() >= 30 && e.getAge() <= 39) {
-//                return "30-39 age group";
-//            } else {
-//                return "40+ age group";
-//            }
-//        })).forEach((range, empList) -> System.out.println(empList));
-
-        double avgSalaryLessThan30 = list.stream().filter(e -> e.getAge() <= 30).mapToDouble(Employee::getSalary).average().orElse(0);
-        //System.out.println(avgSalaryLessThan30);
-
-        List<String> maleSaleGreaterThan45k = list.stream().filter(e -> e.getGender().equalsIgnoreCase("Male") && e.getSalary() >= 45000).map(Employee::getName).toList();
-       // System.out.println(maleSaleGreaterThan45k);
-
-
-        Integer commonAge = list.stream().collect(Collectors.groupingBy(Employee::getAge, Collectors.counting()))
-                .entrySet()
-                .stream()
-                .max(Map.Entry.comparingByValue())
-                .get()
-                .getKey();
-      //  System.out.println(commonAge);
-
-
-//        list.stream().sorted(Comparator.comparingInt(Employee::getAge)
-//                .thenComparing(Comparator.comparingDouble(Employee::getSalary).reversed()))
-//                .forEach(System.out::println);
-
-
+        list.stream().collect(Collectors.toMap(
+                Employee::getGender,
+                e -> e,
+                (e1,e2) -> e1.getSalary() >= e2.getSalary() ? e1:e2
+        ));
 
 
     }
