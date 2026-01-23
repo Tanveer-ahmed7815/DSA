@@ -19,32 +19,33 @@ import java.util.Set;
 public class PracticeAgain {
     public static void main(String[] args) {
 
-        //Input: nums = [1,3,-1,-3,5,3,6,7], k = 3
-        //Output: [3,3,5,5,6,7]
+        //Minimum Size Subarray Sum
+        //
+        //[2,3,1,2,4,3], target=7 → 2
 
-        int[] arr = {1, 3, -1, -3, -5, 3, 6, 7};
-        int k = 3;
+        int[] arr = {2, 3, 1, 2, 4, 7};
+        int k = 7;
 
         int l = 0;
         int r = 0;
-        int max = 0;
-        List<Integer> averageList = new ArrayList<>();
+        int minLength = arr.length;
+        int sum = 0;
+
         while (r < arr.length) {
-            if (arr[r] > max) {
-                max = arr[r];
-            }
-            int len = r - l + 1;
-            if (len < k) {
-                r++;
-            } else if (len == k) {
-                averageList.add(max);
-            } else {
+
+            sum = sum + arr[r];
+            while (sum > k) {
+                sum = sum - arr[l];
                 l++;
             }
+            if (sum == k) {
+                minLength = Math.min(minLength, r - l + 1);
+            }
+            r++;
 
         }
 
-        System.out.println(averageList);
+        System.out.println(minLength);
 
 
     }
