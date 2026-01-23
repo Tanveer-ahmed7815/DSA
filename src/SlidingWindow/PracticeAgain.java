@@ -19,29 +19,29 @@ import java.util.Set;
 public class PracticeAgain {
     public static void main(String[] args) {
 
-        //Output: [2.2, 2.8, 2.4, 3.6, 2.8]
+        //Input: nums = [1,3,-1,-3,5,3,6,7], k = 3
+        //Output: [3,3,5,5,6,7]
 
-        int[] arr = {1, 3, 2, 6, -1, 4, 1, 8, 2};
-        int k = 5;
+        int[] arr = {1, 3, -1, -3, -5, 3, 6, 7};
+        int k = 3;
 
         int l = 0;
         int r = 0;
-        int sum = 0;
-        List<Double> averageList = new ArrayList<>();
+        int max = 0;
+        List<Integer> averageList = new ArrayList<>();
         while (r < arr.length) {
-            int length = r - l + 1;
-            if (length > k) {
-                sum = sum - arr[l];
-                l++;
-            } else {
-                sum = sum + arr[r];
+            if (arr[r] > max) {
+                max = arr[r];
+            }
+            int len = r - l + 1;
+            if (len < k) {
                 r++;
+            } else if (len == k) {
+                averageList.add(max);
+            } else {
+                l++;
             }
-            if (length == k) {
-                double avg = (double) sum / k;
-                averageList.add(avg);
 
-            }
         }
 
         System.out.println(averageList);
