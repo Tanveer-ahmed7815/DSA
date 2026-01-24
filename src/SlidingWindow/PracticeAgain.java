@@ -19,33 +19,31 @@ import java.util.Set;
 public class PracticeAgain {
     public static void main(String[] args) {
 
-        //Minimum Size Subarray Sum
-        //
-        //[2,3,1,2,4,3], target=7 → 2
+        //Input: s = "abcabcbb"
+        //Output: 3
+        //Explanation: "abc"
 
-        int[] arr = {2, 3, 1, 2, 4, 7};
-        int k = 7;
-
+        String s = "abba";
+        HashSet<Character> set = new HashSet<>();
         int l = 0;
         int r = 0;
-        int minLength = arr.length;
-        int sum = 0;
+        int maxLength = 0;
 
-        while (r < arr.length) {
+        while (r < s.length()) {
 
-            sum = sum + arr[r];
-            while (sum > k) {
-                sum = sum - arr[l];
+            if (set.contains(s.charAt(r))) {
+                set.remove(s.charAt(l));
                 l++;
+            } else {
+                set.add(s.charAt(r));
+                maxLength = Math.max(maxLength, r - l + 1);
+                r++;
             }
-            if (sum == k) {
-                minLength = Math.min(minLength, r - l + 1);
-            }
-            r++;
+
 
         }
 
-        System.out.println(minLength);
+        System.out.println(maxLength);
 
 
     }

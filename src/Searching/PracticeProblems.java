@@ -16,13 +16,7 @@ public class PracticeProblems {
         while (start <= end) {
             int mid = start + (end - start) / 2;
 
-            if(arr[mid] >= target){
-                ceil = mid;
-                end = mid -1;
 
-            }else{
-                start = mid + 1;
-            }
         }
 
         System.out.println(ceil);
