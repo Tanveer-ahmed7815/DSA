@@ -200,6 +200,7 @@ public class PracticeAgain {
         ListNode listNode = searchElementLL(head, 2);
         System.out.println(listNode.val);
 
+
     }
 
 }
