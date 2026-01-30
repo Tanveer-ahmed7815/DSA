@@ -10,6 +10,8 @@ Input: 1 → 2 → 3 → 4 → null
 Output: 4 → 3 → 2 → 1 → null
  */
 
+import java.util.List;
+
 public class PracticeAgain {
 
     static class ListNode {
@@ -126,6 +128,27 @@ public class PracticeAgain {
         return dummy.next;
     }
 
+    //Input:
+    //1 → 2 → 3 → 4 → 2 (cycle)
+    //Output:
+    //true
+    private static boolean findCycle(ListNode head) {
+
+        ListNode fast = head;
+        ListNode slow = head;
+
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+
+            if(fast == slow){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 
     public static void main(String[] args) {
 
@@ -159,8 +182,9 @@ public class PracticeAgain {
 //        displayLL(listNode);
 //        System.out.println();
 
-        ListNode listNode = removeNthNode(head, 3);
-        displayLL(listNode);
+//        ListNode listNode = removeNthNode(head, 3);
+//        displayLL(listNode);
+        findCycle(head);
     }
 
 
