@@ -33,11 +33,11 @@ public class PracticeAgain {
         }
     }
 
-    //Input: 1 → null
-    // 2 → 3 → 4 → null
-    //Output: 4 → 3 → 2 → 1 → null
+    //1 →
+    // 2 → 3 → 4 → 5 -> null
+    //Output:
+    //5 → 4 → 3 → 2 → 1 -> null
     private static ListNode reverseLL(ListNode head) {
-
         ListNode curr = head;
         ListNode prev = null;
 
@@ -141,7 +141,7 @@ public class PracticeAgain {
             fast = fast.next.next;
             slow = slow.next;
 
-            if(fast == slow){
+            if (fast == slow) {
                 return true;
             }
         }
@@ -164,12 +164,12 @@ public class PracticeAgain {
         head1.next.next.next = new ListNode(4);
         head1.next.next.next.next = new ListNode(6);
 
-        displayLL(head);
-        System.out.println();
-
-//        ListNode reverseLL = reverseLL(head);
-//        displayLL(reverseLL);
+//        displayLL(head);
 //        System.out.println();
+
+        ListNode reverseLL = reverseLL(head);
+        displayLL(reverseLL);
+        System.out.println();
 
 //        ListNode middledLL = middleLL(head);
 //        System.out.println(middledLL.val);
@@ -184,7 +184,7 @@ public class PracticeAgain {
 
 //        ListNode listNode = removeNthNode(head, 3);
 //        displayLL(listNode);
-        findCycle(head);
+        //       findCycle(head);
     }
 
 
