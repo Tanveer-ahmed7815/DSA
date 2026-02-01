@@ -6,20 +6,13 @@ package Searching;
 
 public class PracticeProblems {
     public static void main(String[] args) {
-        int[] arr = {5, 7, 7, 8, 8, 10};
-        int target = 9;
+
+        int[] arr = {10, 20, 30, 40};
+        int target = 40;
+
         int start = 0;
         int end = arr.length - 1;
 
-        int ceil = -1;
-
-        while (start <= end) {
-            int mid = start + (end - start) / 2;
-
-
-        }
-
-        System.out.println(ceil);
 
 
     }
