@@ -19,32 +19,30 @@ import java.util.Set;
 public class PracticeAgain {
     public static void main(String[] args) {
 
-        //Input: s = "abcabcbb"
-        //Output: 3
-        //Explanation: "abc"
+        //Longest Subarray with Sum ≤ K
+        //
+        //[1,2,3], k=3 → 2
 
-        String s = "abba";
-        HashSet<Character> set = new HashSet<>();
+        int[] nums = {2, 1, 5, 2, 3, 2};
+        int k = 3;
+
         int l = 0;
         int r = 0;
-        int maxLength = 0;
 
-        while (r < s.length()) {
-
-            if (set.contains(s.charAt(r))) {
-                set.remove(s.charAt(l));
+        int maxSum = 0;
+        int sum = 0;
+        while (r < nums.length) {
+            int len = r - l + 1;
+            if (len > 3) {
+                sum = sum - nums[l];
                 l++;
-            } else {
-                set.add(s.charAt(r));
-                maxLength = Math.max(maxLength, r - l + 1);
-                r++;
             }
-
-
+            sum = sum + nums[r];
+            maxSum = Math.max(maxSum, sum);
+            r++;
         }
 
-        System.out.println(maxLength);
-
+        System.out.println(maxSum);
 
     }
 

@@ -1,27 +1,27 @@
 package Arrays;
 
+import java.util.Arrays;
 
+//Move Zeros
+//
+//[0,1,0,3] → [1,3,0,0]
 public class PracticeArrayAgain {
     public static void main(String[] args) {
 
 
-
-        int[] arr = {1, 7, 3, 6, 5, 6};
-
-        int totalSum = 0;
-        for (int a : arr) {
-            totalSum += a;
-        }
-
-        int leftSum = 0;
+        int[] arr = {0, 1, 0, 3};
+        int k = 0;
         for (int i = 0; i < arr.length; i++) {
-            int rightSum = totalSum - leftSum - arr[i];
-            if (rightSum == leftSum) {
-                System.out.println(i);
-                break;
+            if (arr[i] != 0) {
+                arr[k++] = arr[i];
             }
-            leftSum += arr[i];
         }
+
+        for (int i = k; i < arr.length; i++) {
+            arr[k++] = 0;
+        }
+
+        System.out.println(Arrays.toString(arr));
 
     }
 
