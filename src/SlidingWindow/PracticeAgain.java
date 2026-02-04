@@ -19,30 +19,28 @@ import java.util.Set;
 public class PracticeAgain {
     public static void main(String[] args) {
 
-        //Longest Subarray with Sum ≤ K
+        //Longest Consecutive Sequence
         //
-        //[1,2,3], k=3 → 2
+        //[100,4,200,1,3,2] → 4
 
-        int[] nums = {2, 1, 5, 2, 3, 2};
-        int k = 3;
+        int[] nums = {100, 4, 200, 1, 3, 2, 6};
+        Set<Integer> set = new HashSet<>();
+        for (int i : nums) {
+            set.add(i);
+        }
+        int counter = 0;
 
-        int l = 0;
-        int r = 0;
-
-        int maxSum = 0;
-        int sum = 0;
-        while (r < nums.length) {
-            int len = r - l + 1;
-            if (len > 3) {
-                sum = sum - nums[l];
-                l++;
+        for (int i : nums) {
+            int count = 0;
+            int num = i;
+            while (set.contains(num - 1)) {
+                count++;
+                num++;
             }
-            sum = sum + nums[r];
-            maxSum = Math.max(maxSum, sum);
-            r++;
+            counter = Math.max(count, counter);
         }
 
-        System.out.println(maxSum);
+        System.out.println(counter);
 
     }
 
