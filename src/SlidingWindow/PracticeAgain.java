@@ -12,35 +12,42 @@ Explanation: Subarray [5,1,3] has the maximum sum.
  */
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class PracticeAgain {
     public static void main(String[] args) {
 
-        //Longest Consecutive Sequence
-        //
-        //[100,4,200,1,3,2] → 4
+        //Example:
+        //Input: arr = [2,1,5,1,3], k = 7
+        //Output: 4
+        //Explanation: [2,1,1,3]
 
-        int[] nums = {100, 4, 200, 1, 3, 2, 6};
-        Set<Integer> set = new HashSet<>();
-        for (int i : nums) {
-            set.add(i);
-        }
-        int counter = 0;
+        String str = "eceeba";
+        int k = 2;
 
-        for (int i : nums) {
-            int count = 0;
-            int num = i;
-            while (set.contains(num - 1)) {
-                count++;
-                num++;
+        Map<Character, Integer> map = new HashMap<>();
+
+        int l = 0;
+        int r = 0;
+
+        int maxLength = 0;
+
+        while (r < str.length()) {
+            map.put(str.charAt(r), map.getOrDefault(str.charAt(r), 0) + 1);
+            if (map.size() > k) {
+                map.remove(str.charAt(l));
+                l++;
             }
-            counter = Math.max(count, counter);
+            maxLength = Math.max(maxLength, r - l + 1);
+            r++;
+
         }
 
-        System.out.println(counter);
+        System.out.println(maxLength);
 
     }
 
