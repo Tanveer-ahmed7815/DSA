@@ -9,21 +9,37 @@ public class PracticeArrayAgain {
     public static void main(String[] args) {
 
 
-        int[] arr = {0, 1, 0, 3};
-        int k = 0;
+        int[] arr = {1, 2, 3};
+        //1,3,6
+
+        int totalSum = Arrays.stream(arr).sum();
+        int leftSum = 0;
+
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] != 0) {
-                arr[k++] = arr[i];
+            int rightSum = totalSum - leftSum - arr[i];
+            if (leftSum == rightSum) {
+                System.out.println(arr[i]);
+                break;
             }
+            leftSum += arr[i];
+
         }
 
-        for (int i = k; i < arr.length; i++) {
-            arr[k++] = 0;
-        }
 
-        System.out.println(Arrays.toString(arr));
 
     }
 
 
+}
+
+
+class Singteton{
+    private Singteton(){
+
+    }
+    private static final Singteton instance = new Singteton();
+
+    public static Singteton getInstance(){
+        return instance;
+    }
 }

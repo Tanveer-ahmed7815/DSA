@@ -9,31 +9,24 @@ import java.util.Arrays;
 public class PracticeProblems {
     public static void main(String[] args) {
 
-        int[] arr1 = {1, 3, 5};
-        int[] arr2 = {2, 4};
-        int i, k, j;
-        i = k = j = 0;
-        int[] res = new int[arr1.length + arr2.length];
-        while (i < arr1.length && j < arr2.length) {
+        int[] arr = {2, 3, 3, 4, 6};
+        int target = 3;
 
-            if (arr1[i] < arr2[j]) {
-                res[k++] = arr1[i++];
+        int result = -1;
+        int start = 0;
+        int end = arr.length - 1;
+
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            if (arr[mid] == target) {
+                result = mid;
+                start = mid + 1;
+            } else if (arr[mid] > target) {
+                end = mid - 1;
             } else {
-                res[k++] = arr2[j++];
-            }
-
-        }
-
-        if (i < arr1.length) {
-            while (i < arr1.length) {
-                res[k++] = arr1[i++];
-            }
-        } else {
-            while (j < arr2.length) {
-                res[k++] = arr2[j++];
+                start = mid + 1;
             }
         }
-
-        System.out.println(Arrays.toString(res));
+        System.out.println(result);
     }
 }
