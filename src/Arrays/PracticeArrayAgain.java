@@ -9,17 +9,19 @@ public class PracticeArrayAgain {
     public static void main(String[] args) {
 
 
-        int[] arr = {1, 2, 3};
-        //1,3,6
-        int[] res = new int[arr.length];
-        int sum = 0;
-
+        int[] arr = {0, 1, 0, 3};
+        int k = 0;
         for (int i = 0; i < arr.length; i++) {
-            sum += arr[i];
-            res[i] = sum;
-
+            if (arr[i] != 0) {
+                arr[k++] = arr[i];
+            }
         }
-        System.out.println(Arrays.toString(res));
+
+        for (int i = k; i < arr.length; i++) {
+            arr[i] = 0;
+        }
+
+        System.out.println(Arrays.toString(arr));
 
     }
 
