@@ -25,6 +25,8 @@ public class MainClass {
         list.add(new Employee("Siddarth", 22, 5000.0, "Male"));
         list.add(new Employee("Shanu", 32, 88000.0, "Male"));
 
+
+
         Map<String, List<Employee>> collect = list.stream().collect(Collectors.groupingBy(e -> {
             if (e.getAge() >= 20 && e.getAge() <= 30) return "30";
             else if (e.getAge() >= 31 && e.getAge() <= 40) return "40";

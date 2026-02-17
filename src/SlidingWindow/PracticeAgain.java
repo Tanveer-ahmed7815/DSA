@@ -23,23 +23,22 @@ import java.util.stream.Collectors;
 public class PracticeAgain {
     public static void main(String[] args) {
 
-        //Longest Consecutive Sequence
-        //[100,4,200,1,3,2] → 4
-        int[] arr = {100, 4, 200, 1, 3, 2, 0};
-        Set<Integer> set = Arrays.stream(arr).boxed().collect(Collectors.toSet());
-        int count = 0;
+        //Max Consecutive Ones
+        //[1,1,0,1,1,1] → 3
+        int[] arr = {1, 1, 1, 1, 1, 1, 0, 0};
+
+        int l = 0;
+        int r = 0;
         int maxCount = 0;
-        for (int i = 0; i < arr.length; i++) {
-            int num = arr[i];
-            count = 1;
-            while (set.contains(num - count)) {
-                count++;
-                maxCount = Math.max(count, maxCount);
+        while (r < arr.length) {
+            if (arr[r] != 1) {
+                l = r + 1;
             }
-
+            maxCount = Math.max(maxCount, r - l + 1);
+            r++;
         }
-        System.out.println(maxCount);
 
+        System.out.println(maxCount);
     }
 
 }

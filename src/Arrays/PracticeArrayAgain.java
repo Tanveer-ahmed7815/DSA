@@ -1,6 +1,10 @@
 package Arrays;
 
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 //Move Zeros
 //
@@ -9,19 +13,11 @@ public class PracticeArrayAgain {
     public static void main(String[] args) {
 
 
-        int[] arr = {0, 1, 0, 3};
-        int k = 0;
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] != 0) {
-                arr[k++] = arr[i];
-            }
-        }
+       String text = "hi";
+       int count = 3;
+        String repeat = text.repeat(count);
+        System.out.println(repeat);
 
-        for (int i = k; i < arr.length; i++) {
-            arr[i] = 0;
-        }
-
-        System.out.println(Arrays.toString(arr));
 
     }
 
