@@ -26,21 +26,11 @@ public class MainClass {
         list.add(new Employee("Shanu", 32, 88000.0, "Male"));
 
 
-
-        Map<String, List<Employee>> collect = list.stream().collect(Collectors.groupingBy(e -> {
-            if (e.getAge() >= 20 && e.getAge() <= 30) return "30";
-            else if (e.getAge() >= 31 && e.getAge() <= 40) return "40";
-            else return "40+";
-        }));
-
-        int age = list.stream().max(Comparator.comparingInt(Employee::getAge)).get().getAge();
-
-        list.stream().collect(Collectors.toMap(
-                Employee::getSalary,
-                e -> e,
-                (a,b) -> a.getSalary() >= b.getSalary() ? a:b
-        ));
-
+        Integer key = list.stream().collect(Collectors.groupingBy(Employee::getAge, Collectors.counting()))
+                .entrySet()
+                .stream()
+                .max(Comparator.comparingInt(e -> Math.toIntExact(e.getValue()))).get().getKey();
+        System.out.println(key);
 
 
     }
