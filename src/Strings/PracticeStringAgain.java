@@ -18,21 +18,19 @@ import java.util.stream.Stream;
 public class PracticeStringAgain {
     public static void main(String[] args) {
 
-        String s = "aabcccaa";
-        StringBuilder sb = new StringBuilder();
-        int count = 1;
+        List<String> list = Arrays.asList("eat", "tea", "tan", "ate", "nat", "bat");
+        Map<String, List<String>> map = new HashMap<>();
 
-        for (int i = 1; i < s.length(); i++) {
-            if (s.charAt(i) == s.charAt(i - 1)) {
-                count++;
-            } else {
-                sb.append(s.charAt(i - 1)).append(count);
-                count = 1;
-            }
+        for(String words : list){
+            char[] c = words.toCharArray();
+            Arrays.sort(c);
+
+            String key = new String(c);
+            map.computeIfAbsent(key, k -> new ArrayList<>()).add(words);
+
         }
-        sb.append(s.charAt(s.length() - 1)).append(count);
 
-        System.out.println(sb);
+        System.out.println(map);
     }
 
 }
