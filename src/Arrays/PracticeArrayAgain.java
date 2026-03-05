@@ -11,27 +11,24 @@ import java.util.Stack;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.IntStream;
 
-//Input: nums = [0, 1, 0, 3, 12]
-//Output: [1, 3, 12, 0, 0]
+//Input: nums = [1, 1, 2, 2, 3]
+//Output: [1, 2, 3]
 public class PracticeArrayAgain {
 
     public static void main(String[] args) {
 
-        int[] arr = {0, 1, 0, 3, 12};
-        int k = 0;
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] != 0) {
-                int temp = arr[k];
-                arr[k] = arr[i];
-                arr[i] = temp;
-                k++;
+        int[] arr = {1, 1, 2, 2, 3};
 
+        int k = 1;
+        for (int i = 1; i < arr.length; i++) {
+            if(arr[i] != arr[i-1]){
+                arr[k++] = arr[i];
             }
         }
-        System.out.println(Arrays.toString(arr));
+
+
 
     }
-
 
 }
 
