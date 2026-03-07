@@ -17,19 +17,10 @@ public class PracticeArrayAgain {
 
     public static void main(String[] args) {
 
-        int[] num = {1, 1, 1, 2, 2, 2, 2, 3, 3, 3};
+        int[] num = {10, 5, 20, 8};
 
-        Map<Integer, Integer> map = new HashMap<>();
-        List<Integer> list = new ArrayList<>();
-
-        for (int i = 0; i < num.length; i++) {
-            int count = map.getOrDefault(num[i], 0);
-            if (count < 2) {
-                list.add(num[i]);
-                map.put(num[i], count + 1);
-            }
-
-        }
+        Integer i = Arrays.stream(num).boxed().sorted((a, b) -> b - a).skip(2).findFirst().get();
+        System.out.println(i);
 
 
     }
