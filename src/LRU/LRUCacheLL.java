@@ -18,15 +18,15 @@ public class LRUCacheLL<K, V> {
         };
     }
 
-    public V get(K key) {
+    public synchronized V get(K key) {
         return map.getOrDefault(key, null);
     }
 
-    public void put(K key, V value) {
+    public synchronized void put(K key, V value) {
         map.put(key, value);
     }
 
-    public int size() {
+    public synchronized int size() {
         return map.size();
     }
 
