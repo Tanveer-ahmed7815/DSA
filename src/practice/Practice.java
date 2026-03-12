@@ -5,15 +5,16 @@ import java.util.Map;
 
 public class Practice {
     public static void main(String[] args) {
-        String input = "Java is great and Java is powerful";
-        String[] s = input.trim().split(" ");
+        String str = "abcdabceabcfabch";
+        String substr = "abc";
 
-        Map<String, Integer> map = new HashMap<>();
+        int count = 0;
 
-        for(String words : s){
-            map.put(words, map.getOrDefault(words, 0) + 1);
+        for (int i = 0; i <= str.length() - substr.length(); i++) {
+            if(str.substring(i, i+substr.length()).equals(substr)){
+                count++;
+            }
         }
-
-        System.out.println(map);
+        System.out.println(count);
     }
 }
