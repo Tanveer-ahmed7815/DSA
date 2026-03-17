@@ -7,36 +7,40 @@ import java.util.Map;
 import java.util.Set;
 
 public class Practice {
+
+    private static final int MAX = 10;
+    private static int counter = 1;
+    private static int turn = 1;
+    private static final Object lock = new Object();
+
     public static void main(String[] args) {
-        //Subarray Sum Equals K — LC 560
-        //
-        //Pattern: Prefix Sum + HashMap
-        //
-        //Input:
-        //nums = [1,1,1], k = 2
-        //Output:
-        //2
 
-        int[] nums = {2, 2, 2};
-        int k = 2;
+        Thread t1 = new Thread(() -> printInOrder(1), "Thread - 1");
+        t1.start();
+    }
 
-        int l = 0;
-        int r = 0;
-        int sum = 0;
-        int counter = 0;
-        while (r < nums.length) {
-            sum = sum + nums[r];
-            while (sum > k) {
-                sum = sum - nums[l];
-                l++;
-            }
-            if (sum == k) {
+    private static void printInOrder(int threadNumber) {
+
+        while (true) {
+            synchronized (lock) {
+                if (turn != threadNumber) {
+                    try {
+                        lock.wait();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+                if (counter > MAX) {
+                    lock.notifyAll();
+                    break;
+                }
+                System.out.println(Thread.currentThread().getName() + " : " + counter);
                 counter++;
-            }
-            r++;
 
+                turn = (turn % 3) + 1;
+                lock.notifyAll();
+            }
         }
-        System.out.println(counter);
 
     }
 }
